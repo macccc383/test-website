@@ -4,276 +4,38 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kentack • Golf Equipment</title>
-  <meta name="description" content="Kentack — precision golf equipment, catalogues, and accessories." />
-  <link rel="stylesheet" href="styles.css">
-  </head>
+  <link rel="stylesheet" href="styles.css" />
+</head>
 <body>
-  <!-- Header / Navigation -->
   <header>
-    <div class="container nav" role="navigation" aria-label="Main">
-      <div class="brand">
-        <div class="logo" aria-hidden="true">
-          <!-- simple golf tee icon -->
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a5 5 0 0 0-5 5v2a5 5 0 1 0 10 0V7a5 5 0 0 0-5-5Zm1 12.9V22h-2v-7.1a7.01 7.01 0 0 1-5.9-5.3h13.8a7.01 7.01 0 0 1-5.9 5.3Z"/></svg>
-        </div>
-        <span>Kentack</span>
-      </div>
-
-      <nav class="navlinks">
+    <div class="container">
+      <div class="brand"><a href="index.html">Kentack</a></div>
+      <nav>
         <a href="index.html" data-i18n="nav.home">Home</a>
         <a href="catalogues.html" data-i18n="nav.catalogues">Catalogues</a>
         <a href="contact.html" data-i18n="nav.contact">Contact</a>
+        <select id="lang" aria-label="Language">
+          <option value="en">English</option>
+          <option value="ja">日本語</option>
+          <option value="vi">Tiếng Việt</option>
+        </select>
+        <button id="theme-toggle">Dark mode</button>
       </nav>
-
-      <div class="langpick">
-        <label for="lang" class="sr" aria-live="polite" data-i18n="nav.language">Language</label>
-        <div class="select-wrap">
-          <select id="lang" class="select" aria-label="Language" title="Language">
-            <option value="en">English</option>
-            <option value="ja">日本語</option>
-            <option value="vi">Tiếng Việt</option>
-          </select>
-        </div>
-      </div>
     </div>
   </header>
 
-  <!-- Hero -->
-  <main id="home" class="hero">
-    <div class="container hero-inner">
-      <div>
-        <span class="badge" data-i18n="hero.badge">NEW • 2025 LINEUP</span>
-        <h1 class="accent" data-i18n="hero.title">Kentack</h1>
-        <p class="lead" data-i18n="hero.lead">Engineered with tour-grade materials and tuned for consistency. Explore our catalogues to find the perfect fit for your swing.</p>
-        <div class="cta">
-          <a href="catalogues.html" class="btn btn-primary" data-i18n="hero.cta">Browse Catalogues</a>
-          <a href="contact.html" class="btn btn-ghost" data-i18n="hero.secondary">Talk to Sales</a>
-        </div>
-
-        <div class="features">
-          <div class="feature"><svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5Zm0 7L2 4v13l10 5 10-5V4l-10 5Z"/></svg>
-            <div><strong data-i18n="feat.build">Tour‑grade build</strong><div style="color:var(--muted)" data-i18n="feat.build2">Forged faces • Premium shafts</div></div>
-          </div>
-          <div class="feature"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9h-2a7 7 0 1 1-7-7V3Z"/></svg>
-            <div><strong data-i18n="feat.fit">Data‑driven fit</strong><div style="color:var(--muted)" data-i18n="feat.fit2">MOI/loft options • Custom lies</div></div>
-          </div>
-          <div class="feature"><svg viewBox="0 0 24 24"><path d="M4 12h16M12 4v16"/></svg>
-            <div><strong data-i18n="feat.warranty">2‑year warranty</strong><div style="color:var(--muted)" data-i18n="feat.warranty2">Dedicated support</div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-art" aria-hidden="true">
-        <div class="grid-lines"></div>
-        <!-- Simple club & ball illustration -->
-        <svg class="club" viewBox="0 0 600 400">
-          <!-- club head -->
-          <defs>
-            <linearGradient id="g" x1="0" x2="1">
-              <stop offset="0" stop-color="#1a1d26"/>
-              <stop offset="1" stop-color="#0e1219"/>
-            </linearGradient>
-          </defs>
-          <ellipse cx="400" cy="260" rx="90" ry="48" fill="url(#g)" stroke="#2a2f3a" stroke-width="3"/>
-          <rect x="180" y="240" width="230" height="14" rx="7" fill="#202532"/>
-          <rect x="160" y="242" width="28" height="10" rx="5" fill="#383f4f"/>
-          <!-- ball -->
-          <circle cx="486" cy="240" r="16" fill="#e7ebf2"/>
-          <circle cx="490" cy="244" r="3" fill="#c9ced8"/>
-          <circle cx="482" cy="237" r="3" fill="#c9ced8"/>
-        </svg>
-      </div>
-    </div>
+  <main class="container hero">
+    <h1 data-i18n="pages.home">Welcome to Kentack</h1>
+    <p>Engineered with tour-grade materials and tuned for consistency.</p>
+    <a href="catalogues.html" class="btn" data-i18n="hero.cta">Browse Catalogues</a>
   </main>
 
-  <!-- Catalogues -->
-  <section id="catalogues" aria-label="Catalogues" class="container">
-    <div class="section-heading">
-      <div>
-        <div class="kicker" data-i18n="catalog.kicker">Shop by Category</div>
-        <h2 style="margin:.3rem 0 0">Catalogues</h2>
-      </div>
-      <a href="index.html" class="btn btn-ghost" aria-label="Back to top">↑</a>
-    </div>
-
-    <div class="cards">
-      <!-- Drivers -->
-      <article class="card" id="drivers">
-        <div class="card-media">
-          <span class="chip" data-i18n="catalog.view">View</span>
-          <svg viewBox="0 0 120 90" aria-hidden="true" width="120" height="90">
-            <rect x="8" y="50" width="78" height="10" rx="5" fill="#2a303c"/>
-            <ellipse cx="95" cy="55" rx="18" ry="9" fill="#1e232f"/>
-          </svg>
-        </div>
-        <h3 data-i18n="cat.drivers">Drivers</h3>
-        <p data-i18n="copy.drivers">Low‑spin heads, adjustable hosels, tour‑proven distance.</p>
-      </article>
-
-      <!-- Irons -->
-      <article class="card" id="irons">
-        <div class="card-media">
-          <span class="chip" data-i18n="catalog.view">View</span>
-          <svg viewBox="0 0 120 90" aria-hidden="true" width="120" height="90">
-            <rect x="30" y="40" width="68" height="8" rx="4" fill="#2a303c"/>
-            <rect x="16" y="46" width="18" height="6" rx="3" fill="#383e4d"/>
-          </svg>
-        </div>
-        <h3 data-i18n="cat.irons">Irons</h3>
-        <p data-i18n="copy.irons">Forged feel with consistent gapping across the set.</p>
-      </article>
-
-      <!-- Putters -->
-      <article class="card" id="putters">
-        <div class="card-media">
-          <span class="chip" data-i18n="catalog.view">View</span>
-          <svg viewBox="0 0 120 90" aria-hidden="true" width="120" height="90">
-            <rect x="20" y="44" width="70" height="6" rx="3" fill="#2a303c"/>
-            <rect x="92" y="42" width="14" height="10" rx="3" fill="#1e232f"/>
-          </svg>
-        </div>
-        <h3 data-i18n="cat.putters">Putters</h3>
-        <p data-i18n="copy.putters">Blade and mallet shapes with balanced strokes.</p>
-      </article>
-
-      <!-- Wedges -->
-      <article class="card" id="wedges">
-        <div class="card-media">
-          <span class="chip" data-i18n="catalog.view">View</span>
-          <svg viewBox="0 0 120 90" aria-hidden="true" width="120" height="90">
-            <rect x="20" y="48" width="68" height="8" rx="4" fill="#2a303c"/>
-            <circle cx="95" cy="50" r="8" fill="#1e232f"/>
-          </svg>
-        </div>
-        <h3 data-i18n="cat.wedges">Wedges</h3>
-        <p data-i18n="copy.wedges">Grinds for every turf condition and shot window.</p>
-      </article>
-
-      <!-- Balls -->
-      <article class="card" id="balls">
-        <div class="card-media">
-          <span class="chip" data-i18n="catalog.view">View</span>
-          <svg viewBox="0 0 120 90" aria-hidden="true" width="120" height="90">
-            <circle cx="60" cy="46" r="14" fill="#e7ebf2"/>
-            <circle cx="56" cy="44" r="2" fill="#c9ced8"/>
-            <circle cx="64" cy="49" r="2" fill="#c9ced8"/>
-          </svg>
-        </div>
-        <h3 data-i18n="cat.balls">Golf Balls</h3>
-        <p data-i18n="copy.balls">Urethane covers for short‑game control and speed.</p>
-      </article>
-
-      <!-- Bags & Carts -->
-      <article class="card" id="bags">
-        <div class="card-media">
-          <span class="chip" data-i18n="catalog.view">View</span>
-          <svg viewBox="0 0 120 90" aria-hidden="true" width="120" height="90">
-            <rect x="40" y="30" width="24" height="34" rx="6" fill="#2a303c"/>
-            <rect x="36" y="28" width="32" height="6" rx="3" fill="#383e4d"/>
-          </svg>
-        </div>
-        <h3 data-i18n="cat.bags">Bags & Carts</h3>
-        <p data-i18n="copy.bags">Lightweight carry, tour stand, and electric carts.</p>
-      </article>
-
-      <!-- Gloves & Accessories -->
-      <article class="card" id="gloves">
-        <div class="card-media">
-          <span class="chip" data-i18n="catalog.view">View</span>
-          <svg viewBox="0 0 120 90" aria-hidden="true" width="120" height="90">
-            <rect x="42" y="34" width="30" height="26" rx="6" fill="#2a303c"/>
-            <rect x="74" y="36" width="10" height="10" rx="3" fill="#383e4d"/>
-          </svg>
-        </div>
-        <h3 data-i18n="cat.gloves">Gloves & Accessories</h3>
-        <p data-i18n="copy.gloves">Premium leather gloves, towels, and rangefinders.</p>
-      </article>
-
-      <!-- Apparel -->
-      <article class="card" id="apparel">
-        <div class="card-media">
-          <span class="chip" data-i18n="catalog.view">View</span>
-          <svg viewBox="0 0 120 90" aria-hidden="true" width="120" height="90">
-            <rect x="28" y="30" width="64" height="28" rx="8" fill="#2a303c"/>
-            <rect x="40" y="58" width="40" height="10" rx="5" fill="#383e4d"/>
-          </svg>
-        </div>
-        <h3 data-i18n="cat.apparel">Apparel</h3>
-        <p data-i18n="copy.apparel">Breathable polos, weatherproof layers, and hats.</p>
-      </article>
-
-      <!-- Shoes -->
-      <article class="card" id="shoes">
-        <div class="card-media">
-          <span class="chip" data-i18n="catalog.view">View</span>
-          <svg viewBox="0 0 120 90" aria-hidden="true" width="120" height="90">
-            <rect x="24" y="54" width="72" height="12" rx="6" fill="#2a303c"/>
-            <rect x="20" y="50" width="30" height="10" rx="5" fill="#383e4d"/>
-          </svg>
-        </div>
-        <h3 data-i18n="cat.shoes">Shoes</h3>
-        <p data-i18n="copy.shoes">Spiked and spikeless options for any course.</p>
-      </article>
-
-      <!-- Training Aids -->
-      <article class="card" id="training">
-        <div class="card-media">
-          <span class="chip" data-i18n="catalog.view">View</span>
-          <svg viewBox="0 0 120 90" aria-hidden="true" width="120" height="90">
-            <rect x="28" y="30" width="64" height="8" rx="4" fill="#2a303c"/>
-            <circle cx="92" cy="34" r="6" fill="#383e4d"/>
-          </svg>
-        </div>
-        <h3 data-i18n="cat.training">Training Aids</h3>
-        <p data-i18n="copy.training">Swing tempo trainers, putting mats, and nets.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" aria-label="Contact" class="container">
-    <div class="section-heading">
-      <div>
-        <div class="kicker" data-i18n="contact.kicker">We'd love to help</div>
-        <h2 data-i18n="contact.title">Contact Kentack</h2>
-      </div>
-    </div>
-
-    <div class="contact">
-      <form class="panel" aria-labelledby="contact-title" onsubmit="event.preventDefault(); alert(currentText('contact.toast'));">
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
-          <div>
-            <label for="name" data-i18n="form.name">Your name</label>
-            <input id="name" class="input" placeholder="" />
-          </div>
-          <div>
-            <label for="email">Email</label>
-            <input id="email" class="input" type="email" placeholder="name@example.com" />
-          </div>
-        </div>
-        <div style="margin-top:12px">
-          <label for="msg" data-i18n="form.message">Message</label>
-          <textarea id="msg" class="input" placeholder=""></textarea>
-        </div>
-        <div style="display:flex; justify-content:end; margin-top:12px">
-          <button class="btn btn-primary" type="submit" data-i18n="form.send">Send</button>
-        </div>
-      </form>
-
-      <aside class="panel">
-        <h3 style="margin:0 0 10px" data-i18n="contact.sales">Sales & Support</h3>
-        <p style="color:var(--muted)" data-i18n="contact.copy">Tell us about your game and we'll match the right gear. Typical reply within 1 business day.</p>
-        <p>📞 <a href="tel:+1-800-KENTACK">+1‑800‑KENTACK</a><br/>✉️ <a href="mailto:sales@kentack.example">sales@kentack.example</a></p>
-      </aside>
-    </div>
-  </section>
-
   <footer>
-    <div class="container" style="display:flex; justify-content:space-between; align-items:center; gap:12px">
-      <div>© <span id="year"></span> Kentack. <span data-i18n="footer.all">All rights reserved.</span></div>
-      <div style="color:var(--muted)">Made with ♥</div>
+    <div class="container">
+      <div>© <span id="year"></span> Kentack.</div>
     </div>
   </footer>
   <script src="i18n.js" defer></script>
+  <script src="script.js" defer></script>
 </body>
 </html>

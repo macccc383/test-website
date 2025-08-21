@@ -1,15 +1,7 @@
 :root {
   --bg: #ffffff;
   --text: #111111;
-  --link: #006400;
   --border: #cccccc;
-}
-
-[data-theme="dark"] {
-  --bg: #111111;
-  --text: #eeeeee;
-  --link: #90ee90;
-  --border: #444444;
 }
 
 body {
@@ -27,7 +19,6 @@ body {
 }
 
 header {
-  border-bottom: 1px solid var(--border);
   padding: 0.5rem 0;
 }
 
@@ -39,36 +30,14 @@ header .container {
 
 nav a {
   margin-right: 1rem;
-  color: var(--text);
-  text-decoration: none;
 }
 
 nav a:last-child {
   margin-right: 0;
 }
 
-#theme-toggle {
-  margin-left: 1rem;
-  border: 1px solid var(--text);
-  background: none;
-  color: var(--text);
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-}
-
-.hero {
-  text-align: center;
+main {
   padding: 2rem 0;
-}
-
-.btn {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--text);
-  border-radius: 4px;
-  text-decoration: none;
-  color: var(--text);
-  background: none;
 }
 
 .card-list {
@@ -91,7 +60,7 @@ nav a:last-child {
   display: none;
 }
 
-input, textarea, select {
+input, textarea {
   width: 100%;
   padding: 0.5rem;
   border: 1px solid var(--border);

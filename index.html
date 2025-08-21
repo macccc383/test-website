@@ -5,134 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kentack • Golf Equipment</title>
   <meta name="description" content="Kentack — precision golf equipment, catalogues, and accessories." />
-  <style>
-    :root{
-      --bg:#0b0b0f;          /* near-black */
-      --card:#111218;        /* dark panel */
-      --muted:#9aa3b2;       /* muted text */
-      --text:#f5f7fb;        /* primary text */
-      --accent:#ffd400;      /* yellow brand */
-      --accent-2:#ffe866;    /* soft yellow */
-      --ring: rgba(255, 212, 0, .35);
-      --ok:#38d39f;
-      --warn:#ffb020;
-      --err:#ff6b6b;
-      --shadow: 0 10px 30px rgba(0,0,0,.45), 0 2px 8px rgba(0,0,0,.6);
-      --radius: 20px;
-      --radius-sm: 12px;
-      --container: 1200px;
-    }
-
-    /* Base --------------------------------------------------------------- */
-    *{ box-sizing: border-box }
-    html{ scroll-behavior: smooth; }
-    body{
-      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color: var(--text); background: radial-gradient(1200px 600px at 80% -10%, rgba(255,212,0,.08), transparent 50%),
-                           radial-gradient(1000px 500px at -10% 10%, rgba(255,232,102,.06), transparent 50%),
-                           var(--bg);
-      line-height: 1.55;
-    }
-    a{ color: var(--accent); text-decoration: none }
-    img{ max-width:100%; height:auto; display:block }
-    .container{ width:min(100%, var(--container)); margin-inline:auto; padding-inline: 24px }
-
-    /* Header ------------------------------------------------------------- */
-    header{
-      position: sticky; top:0; z-index: 50; backdrop-filter: saturate(1.1) blur(10px);
-      background: rgba(10,10,14,.65); border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-    .nav{ display:flex; align-items:center; justify-content:space-between; gap: 16px; height:72px }
-    .brand{ display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.3px; font-size: 1.1rem }
-    .logo{ width:36px; height:36px; border-radius: 12px; background: linear-gradient(145deg, var(--accent), var(--accent-2));
-           box-shadow: inset 0 0 0 2px rgba(0,0,0,.25), 0 8px 18px rgba(255,212,0,.25); display:grid; place-items:center }
-    .logo svg{ width:22px; height:22px; fill:#111 }
-
-    .navlinks{ display:flex; gap: 18px; align-items:center }
-    .navlinks a{ color: var(--text); opacity:.85; padding:8px 12px; border-radius:10px; transition:.2s ease }
-    .navlinks a:hover{ opacity:1; background: rgba(255,255,255,.06) }
-
-    .langpick{ display:flex; align-items:center; gap:10px }
-    .select{ appearance:none; background:#0e1016; color:var(--text); border:1px solid rgba(255,212,0,.55);
-             padding:10px 40px 10px 12px; border-radius: 12px; font-weight:600; position:relative; box-shadow: 0 0 0 0 rgba(0,0,0,0) }
-    .select:focus{ outline:none; border-color: var(--accent); box-shadow: 0 0 0 4px var(--ring) }
-    .select-wrap{ position:relative }
-    .select-wrap::after{ content:"▾"; position:absolute; right:12px; top:50%; translate:0 -50%; pointer-events:none; opacity:.7; color: var(--accent) }
-    /* Ensure dropdown list is also dark on supporting browsers */
-    .select option{ background:#0b0b0f; color:var(--text) }
-
-    /* Hero --------------------------------------------------------------- */
-    .hero{ position: relative; padding: 64px 0 40px }
-    .hero-inner{ display:grid; grid-template-columns: 1.2fr .8fr; gap: 32px; align-items:center }
-    .badge{ display:inline-flex; gap:8px; align-items:center; background:rgba(255,212,0,.10); color:#111; padding:6px 10px; border-radius: 999px;
-            font-weight:700; letter-spacing:.2px; border:1px solid rgba(255,212,0,.35); color: var(--accent) }
-    h1{ font-size: clamp(2rem, 4.6vw, 4rem); line-height:1.05; margin: 14px 0 10px; letter-spacing:.2px }
-    .accent{ background: linear-gradient(90deg, var(--accent), #fff099 60%); -webkit-background-clip: text; background-clip: text; color: transparent }
-    .lead{ font-size: clamp(1rem, 1.2vw, 1.15rem); color: var(--muted); max-width: 55ch }
-
-    .cta{ display:flex; gap:12px; margin-top: 22px }
-    .btn{ --h: 48px; display:inline-flex; height: var(--h); align-items:center; justify-content:center; padding: 0 18px; gap:10px;
-          border-radius: 14px; font-weight:800; letter-spacing:.2px; border:1px solid rgba(255,255,255,.12); box-shadow: var(--shadow);
-          transition: transform .12s ease, background .2s ease, border-color .2s ease }
-    .btn-primary{ background: linear-gradient(180deg, var(--accent), var(--accent-2)); color:#111; border-color: rgba(255,212,0,.6) }
-    .btn-primary:hover{ transform: translateY(-1px) }
-    .btn-ghost{ background: rgba(255,255,255,.06); color: var(--text) }
-    .btn-ghost:hover{ background: rgba(255,255,255,.1) }
-
-    .hero-art{ position:relative; aspect-ratio: 4/3; border-radius: var(--radius); background: radial-gradient(600px 300px at 30% 10%, rgba(255,212,0,.25), transparent 40%),
-               linear-gradient(160deg, #0f1016, #191b24); border:1px solid rgba(255,255,255,.08); box-shadow: var(--shadow);
-               display:grid; place-items:center; overflow:hidden }
-    .grid-lines{ position:absolute; inset:0; background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
-                 linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
-                 background-size: 36px 36px; mask: radial-gradient(500px 260px at 70% 30%, black, transparent 70%) }
-    .club{ width: 74%; filter: drop-shadow(0 18px 40px rgba(0,0,0,.55)) }
-
-    /* Feature row -------------------------------------------------------- */
-    .features{ display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; margin-top:30px }
-    .feature{ background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); border:1px solid rgba(255,255,255,.08);
-              border-radius: 16px; padding:16px; display:flex; gap:12px; align-items:center }
-    .feature svg{ width:26px; height:26px; flex: 0 0 auto; fill: var(--accent) }
-
-    /* Catalogues --------------------------------------------------------- */
-    section{ padding: 64px 0 }
-    .section-heading{ display:flex; align-items:end; justify-content:space-between; gap:16px; margin-bottom:18px }
-    .kicker{ color: var(--accent); font-weight:800; letter-spacing:.3px }
-
-    .cards{ display:grid; grid-template-columns: repeat(12, 1fr); gap: 16px }
-    .card{ grid-column: span 4; background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); border:1px solid rgba(255,255,255,.08);
-           border-radius: var(--radius-sm); overflow:hidden; position:relative; transition: transform .14s ease, border-color .2s ease }
-    .card:hover{ transform: translateY(-4px); border-color: var(--ring) }
-    .card-media{ aspect-ratio: 4/3; background: radial-gradient(400px 180px at 70% 0%, rgba(255,212,0,.18), transparent 40%), #0f1117; display:grid; place-items:center; overflow:hidden }
-    .card h3{ margin: 10px 14px 0; font-size: 1.1rem }
-    .card p{ margin: 6px 14px 14px; color: var(--muted); font-size: .95rem }
-    .chip{ position:absolute; top:10px; left:10px; padding:6px 10px; background: rgba(255,212,0,.12); border:1px solid rgba(255,212,0,.35); color: var(--accent);
-           border-radius: 999px; font-weight:700; letter-spacing:.3px; font-size:.8rem }
-
-    /* Contact ------------------------------------------------------------ */
-    .contact{ display:grid; grid-template-columns: 1fr 1fr; gap: 24px }
-    .panel{ background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); border:1px solid rgba(255,255,255,.08);
-            border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow) }
-    .input{ width:100%; background: #0e1016; color: var(--text); border:1px solid rgba(255,255,255,.12); border-radius: 12px; padding: 12px 14px; outline:none }
-    .input:focus{ border-color: var(--ring); box-shadow: 0 0 0 4px rgba(255,212,0,.12) }
-    textarea.input{ min-height: 130px; resize: vertical }
-
-    /* Anchor offset so sticky header doesn't cover targets */
-    [id]{ scroll-margin-top: 84px }
-
-    /* Footer ------------------------------------------------------------- */
-    footer{ padding: 36px 0 56px; color: var(--muted); border-top:1px solid rgba(255,255,255,.06) }
-
-    /* Responsive --------------------------------------------------------- */
-    @media (max-width: 980px){ .hero-inner{ grid-template-columns: 1fr; } .contact{ grid-template-columns:1fr } }
-    @media (max-width: 840px){ .card{ grid-column: span 6 } }
-    @media (max-width: 560px){ .card{ grid-column: span 12 } .navlinks{ display:none } }
-
-    /* Motion preferences (accessibility) -------------------------------- */
-    @media (prefers-reduced-motion: reduce){
-      *{ animation: none !important; transition: none !important }
-    }
-  </style>
-</head>
+  <link rel="stylesheet" href="styles.css">
+  </head>
 <body>
   <!-- Header / Navigation -->
   <header>
@@ -146,9 +20,9 @@
       </div>
 
       <nav class="navlinks">
-        <a href="#home" data-i18n="nav.home">Home</a>
-        <a href="#catalogues" data-i18n="nav.catalogues">Catalogues</a>
-        <a href="#contact" data-i18n="nav.contact">Contact</a>
+        <a href="index.html" data-i18n="nav.home">Home</a>
+        <a href="catalogues.html" data-i18n="nav.catalogues">Catalogues</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
       </nav>
 
       <div class="langpick">
@@ -175,8 +49,8 @@
         </h1>
         <p class="lead" data-i18n="hero.lead">Engineered with tour-grade materials and tuned for consistency. Explore our catalogues to find the perfect fit for your swing.</p>
         <div class="cta">
-          <a href="#catalogues" class="btn btn-primary" data-i18n="hero.cta">Browse Catalogues</a>
-          <a href="#contact" class="btn btn-ghost" data-i18n="hero.secondary">Talk to Sales</a>
+          <a href="catalogues.html" class="btn btn-primary" data-i18n="hero.cta">Browse Catalogues</a>
+          <a href="contact.html" class="btn btn-ghost" data-i18n="hero.secondary">Talk to Sales</a>
         </div>
 
         <div class="features">
@@ -222,7 +96,7 @@
         <div class="kicker" data-i18n="catalog.kicker">Shop by Category</div>
         <h2 style="margin:.3rem 0 0">Catalogues</h2>
       </div>
-      <a href="#home" class="btn btn-ghost" aria-label="Back to top">↑</a>
+      <a href="index.html" class="btn btn-ghost" aria-label="Back to top">↑</a>
     </div>
 
     <div class="cards">
@@ -403,102 +277,6 @@
       <div style="color:var(--muted)">Made with ♥</div>
     </div>
   </footer>
-
-  <script>
-    // --- Minimal i18n (en, ja, vi) ---------------------------------------
-    const dict = {
-      en: {
-        nav: { home:"Home", catalogues:"Catalogues", contact:"Contact", language:"Language" },
-        hero: {
-          badge:"NEW • 2025 LINEUP",
-          title:"Precision Golf Equipment for Peak Performance",
-          lead:"Engineered with tour-grade materials and tuned for consistency. Explore our catalogues to find the perfect fit for your swing.",
-          cta:"Browse Catalogues", secondary:"Talk to Sales"
-        },
-        feat:{ build:"Tour‑grade build", build2:"Forged faces • Premium shafts", fit:"Data‑driven fit", fit2:"MOI/loft options • Custom lies", warranty:"2‑year warranty", warranty2:"Dedicated support" },
-        catalog:{ kicker:"Shop by Category", view:"View" },
-        cat:{ drivers:"Drivers", irons:"Irons", putters:"Putters", wedges:"Wedges", balls:"Golf Balls", bags:"Bags & Carts", gloves:"Gloves & Accessories", apparel:"Apparel", shoes:"Shoes", training:"Training Aids" },
-        copy:{ drivers:"Low‑spin heads, adjustable hosels, tour‑proven distance.", irons:"Forged feel with consistent gapping across the set.", putters:"Blade and mallet shapes with balanced strokes.", wedges:"Grinds for every turf condition and shot window.", balls:"Urethane covers for short‑game control and speed.", bags:"Lightweight carry, tour stand, and electric carts.", gloves:"Premium leather gloves, towels, and rangefinders.", apparel:"Breathable polos, weatherproof layers, and hats.", shoes:"Spiked and spikeless options for any course.", training:"Swing tempo trainers, putting mats, and nets." },
-        contact:{ kicker:"We'd love to help", title:"Contact Kentack", sales:"Sales & Support", copy:"Tell us about your game and we'll match the right gear. Typical reply within 1 business day.", toast:"Thanks! We'll get back to you shortly." },
-        form:{ name:"Your name", message:"Message", send:"Send" },
-        footer:{ all:"All rights reserved." }
-      },
-      ja: {
-        nav: { home:"ホーム", catalogues:"カタログ", contact:"お問い合わせ", language:"言語" },
-        hero: {
-          badge:"新製品 • 2025年モデル",
-          title:"最高のパフォーマンスのための精密なゴルフ用品",
-          lead:"ツアー品質の素材と一貫性の高いチューニング。あなたのスイングに最適な製品をカタログから見つけましょう。",
-          cta:"カタログを見る", secondary:"営業に相談"
-        },
-        feat:{ build:"ツアーグレードの構造", build2:"鍛造フェース・高品質シャフト", fit:"データに基づくフィッティング", fit2:"MOI/ロフト・ライ角のカスタム", warranty:"2年保証", warranty2:"専任サポート" },
-        catalog:{ kicker:"カテゴリーから探す", view:"見る" },
-        cat:{ drivers:"ドライバー", irons:"アイアン", putters:"パター", wedges:"ウェッジ", balls:"ゴルフボール", bags:"バッグ・カート", gloves:"グローブ・アクセサリー", apparel:"アパレル", shoes:"シューズ", training:"トレーニング器具" },
-        copy:{ drivers:"低スピンヘッド、可変ホーゼル、ツアー実績の飛距離。", irons:"鍛造の打感と番手間の安定した飛距離。", putters:"ブレード/マレットで安定したストローク。", wedges:"あらゆる芝・ライに合うグラインド。", balls:"ショートゲームで効くウレタンカバー。", bags:"軽量キャリー、ツアースタンド、電動カート。", gloves:"上質レザーの手袋、タオル、距離計。", apparel:"通気性の高いポロ、防寒・防水レイヤー、キャップ。", shoes:"スパイク・スパイクレスをラインアップ。", training:"テンポトレーナー、パターマット、ネット。" },
-        contact:{ kicker:"私たちにお任せください", title:"Kentackにお問い合わせ", sales:"営業・サポート", copy:"あなたのゴルフに合う製品をご提案します。通常1営業日以内に返信。", toast:"ありがとうございます。折り返しご連絡します。" },
-        form:{ name:"お名前", message:"メッセージ", send:"送信" },
-        footer:{ all:"All rights reserved." }
-      },
-      vi: {
-        nav: { home:"Trang chủ", catalogues:"Danh mục", contact:"Liên hệ", language:"Ngôn ngữ" },
-        hero: {
-          badge:"MỚI • Dòng sản phẩm 2025",
-          title:"Thiết bị golf chính xác cho hiệu suất tối đa",
-          lead:"Chế tạo theo tiêu chuẩn tour và tối ưu độ ổn định. Khám phá danh mục để tìm sản phẩm hợp với cú vung của bạn.",
-          cta:"Xem danh mục", secondary:"Trao đổi với bán hàng"
-        },
-        feat:{ build:"Kết cấu chuẩn tour", build2:"Mặt gậy rèn • Shaft cao cấp", fit:"Tối ưu theo dữ liệu", fit2:"Tùy chọn MOI/loft • Chỉnh lie", warranty:"Bảo hành 2 năm", warranty2:"Hỗ trợ chuyên trách" },
-        catalog:{ kicker:"Mua theo danh mục", view:"Xem" },
-        cat:{ drivers:"Gậy driver", irons:"Gậy iron", putters:"Gậy putter", wedges:"Gậy wedge", balls:"Bóng golf", bags:"Túi & xe đẩy", gloves:"Găng tay & phụ kiện", apparel:"Trang phục", shoes:"Giày", training:"Dụng cụ tập luyện" },
-        copy:{ drivers:"Đầu gậy ít spin, cổ gậy chỉnh được, khoảng cách chuẩn tour.", irons:"Cảm giác rèn với khoảng cách ổn định giữa các số.", putters:"Dáng blade/mallet cân bằng cho cú gạt mượt.", wedges:"Nhiều kiểu grind cho mọi mặt cỏ và tình huống.", balls:"Vỏ urethane cho kiểm soát quanh green và tốc độ.", bags:"Túi nhẹ, túi stand tour và xe đẩy điện.", gloves:"Găng da cao cấp, khăn và máy đo khoảng cách.", apparel:"Áo polo thoáng khí, áo khoác chống thời tiết, mũ.", shoes:"Tùy chọn có/không đinh cho mọi sân.", training:"Dụng cụ tempo, thảm putt và lưới tập." },
-        contact:{ kicker:"Rất hân hạnh hỗ trợ", title:"Liên hệ Kentack", sales:"Kinh doanh & Hỗ trợ", copy:"Mô tả lối chơi của bạn, chúng tôi sẽ gợi ý đúng sản phẩm. Thường phản hồi trong 1 ngày làm việc.", toast:"Cảm ơn bạn! Chúng tôi sẽ phản hồi sớm." },
-        form:{ name:"Họ tên", message:"Tin nhắn", send:"Gửi" },
-        footer:{ all:"Đã đăng ký bản quyền." }
-      }
-    };
-
-    const $ = (sel, parent=document) => parent.querySelector(sel);
-    const $$ = (sel, parent=document) => [...parent.querySelectorAll(sel)];
-
-    function applyText(lang){
-      const t = dict[lang] || dict.en;
-      // Bulk translate all [data-i18n]
-      $$('[data-i18n]').forEach(el => {
-        const path = el.getAttribute('data-i18n').split('.');
-        let node = t;
-        for(const p of path){ node = (node||{})[p]; }
-        if(typeof node === 'string'){ el.textContent = node; }
-      });
-      // Reflect language attribute for accessibility
-      document.documentElement.lang = lang;
-      // Persist choice
-      localStorage.setItem('kentack_lang', lang);
-    }
-
-    function currentText(path){
-      const lang = document.documentElement.lang || 'en';
-      const keys = path.split('.');
-      let node = (dict[lang] || dict.en);
-      for(const p of keys){ node = (node||{})[p]; }
-      return typeof node === 'string' ? node : '';
-    }
-
-    // Initialize language from storage or browser preference
-    (function initLang(){
-      const saved = localStorage.getItem('kentack_lang');
-      const prefer = (navigator.language||'en').slice(0,2);
-      const lang = saved || (['en','ja','vi'].includes(prefer) ? prefer : 'en');
-      $('#lang').value = lang;
-      applyText(lang);
-    })();
-
-    $('#lang').addEventListener('change', (e)=> applyText(e.target.value));
-
-    // Year in footer
-    $('#year').textContent = new Date().getFullYear();
-  </script>
-
-  <!-- Accessibility helpers -->
-  <style>.sr{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0 }</style>
+  <script src="i18n.js" defer></script>
 </body>
 </html>

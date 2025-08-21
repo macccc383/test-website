@@ -3,19 +3,19 @@
 const dict = {
   en: {
     nav: { home:"Home", catalogues:"Catalogues", contact:"Contact", language:"Language" },
-    hero: { title:"Precision Golf Equipment for Peak Performance", cta:"Browse Catalogues" },
+    hero: { title:"Kentack", cta:"Browse Catalogues" },
     pages: { home:"Welcome to Kentack", catalogues:"Catalogues", contact:"Contact Kentack" },
     contact: { name:"Your name", email:"Email", message:"Message", send:"Send" }
   },
   ja: {
     nav: { home:"ホーム", catalogues:"カタログ", contact:"お問い合わせ", language:"言語" },
-    hero: { title:"最高のパフォーマンスのための精密なゴルフ用品", cta:"カタログを見る" },
+    hero: { title:"Kentack", cta:"カタログを見る" },
     pages: { home:"Kentackへようこそ", catalogues:"カタログ", contact:"Kentackにお問い合わせ" },
     contact: { name:"お名前", email:"メール", message:"メッセージ", send:"送信" }
   },
   vi: {
     nav: { home:"Trang chủ", catalogues:"Danh mục", contact:"Liên hệ", language:"Ngôn ngữ" },
-    hero: { title:"Thiết bị golf chính xác cho hiệu suất tối đa", cta:"Xem danh mục" },
+    hero: { title:"Kentack", cta:"Xem danh mục" },
     pages: { home:"Chào mừng đến Kentack", catalogues:"Danh mục", contact:"Liên hệ Kentack" },
     contact: { name:"Họ tên", email:"Email", message:"Tin nhắn", send:"Gửi" }
   }
@@ -34,11 +34,26 @@ function applyText(lang) {
     if (typeof cur === "string") el.textContent = cur;
   });
   document.documentElement.lang = lang;
-  localStorage.setItem("kentack_lang", lang); // persists across pages & sessions. :contentReference[oaicite:2]{index=2}
+  localStorage.setItem("kentack_lang", lang); // persists across pages & sessions
+
+  // ensure navigation links carry the current language
+  $$("nav a").forEach(a => {
+    const url = new URL(a.getAttribute("href"), location.href);
+    url.searchParams.set("lang", lang);
+    a.setAttribute("href", url.pathname + url.search);
+  });
+
+  // update current URL without reloading
+  const cur = new URL(location.href);
+  cur.searchParams.set("lang", lang);
+  history.replaceState(null, "", cur.pathname + cur.search);
 }
 
 function initI18n() {
-  const saved = localStorage.getItem("kentack_lang");
+  const params = new URLSearchParams(location.search);
+  const paramLang = params.get("lang");
+  if (paramLang) localStorage.setItem("kentack_lang", paramLang);
+  const saved = paramLang || localStorage.getItem("kentack_lang");
   const prefer = (navigator.language||"en").slice(0,2);
   const lang = saved || (["en","ja","vi"].includes(prefer) ? prefer : "en");
   const select = $("#lang");
@@ -52,8 +67,8 @@ function initI18n() {
   // Optional: mark active nav link
   const here = location.pathname.split("/").pop() || "index.html";
   $$("nav a").forEach(a => {
-    const target = a.getAttribute("href");
-    if (target && target.endsWith(here)) a.classList.add("active");
+    const url = new URL(a.getAttribute("href"), location.href);
+    if (url.pathname.split("/").pop() === here) a.classList.add("active");
   });
 }
 

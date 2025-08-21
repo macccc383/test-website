@@ -1,5 +1,4 @@
-<!-- include on every page: <script src="i18n.js" defer></script> -->
-<script>
+
 // --- i18n dictionary (EN / JA / VI) ---
 const dict = {
   en: {
@@ -59,5 +58,5 @@ function initI18n() {
 }
 
 document.addEventListener("DOMContentLoaded", initI18n);
-</script>
+
 

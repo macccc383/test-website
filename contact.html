@@ -1,1 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="contact.title">Contact Kentack</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="container nav" role="navigation" aria-label="Main">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a5 5 0 0 0-5 5v2a5 5 0 1 0 10 0V7a5 5 0 0 0-5-5Zm1 12.9V22h-2v-7.1a7.01 7.01 0 0 1-5.9-5.3h13.8a7.01 7.01 0 0 1-5.9 5.3Z"/></svg>
+        </div>
+        <span>Kentack</span>
+      </div>
+      <nav class="navlinks">
+        <a href="index.html" data-i18n="nav.home">Home</a>
+        <a href="catalogues.html" data-i18n="nav.catalogues">Catalogues</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
+      </nav>
+      <div class="langpick">
+        <label for="lang" class="sr" aria-live="polite" data-i18n="nav.language">Language</label>
+        <div class="select-wrap">
+          <select id="lang" class="select" aria-label="Language" title="Language">
+            <option value="en">English</option>
+            <option value="ja">日本語</option>
+            <option value="vi">Tiếng Việt</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </header>
 
+  <main class="container contact">
+    <h1 data-i18n="contact.title">Contact Kentack</h1>
+    <p data-i18n="contact.copy">Tell us about your game and we'll match the right gear. Typical reply within 1 business day.</p>
+    <form class="contact-form" style="margin-top:20px">
+      <label>
+        <span data-i18n="form.name">Your name</span>
+        <input class="input" type="text">
+      </label>
+      <label>
+        <span data-i18n="form.message">Message</span>
+        <textarea class="input"></textarea>
+      </label>
+      <button class="btn btn-primary" type="submit" data-i18n="form.send">Send</button>
+    </form>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; gap:12px">
+      <div>© <span id="year"></span> Kentack. <span data-i18n="footer.all">All rights reserved.</span></div>
+      <div style="color:var(--muted)">Made with ♥</div>
+    </div>
+  </footer>
+
+  <script src="i18n.js" defer></script>
+</body>
+</html>
